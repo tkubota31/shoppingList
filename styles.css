@@ -1,7 +1,10 @@
 html, body{
     margin: 0;
     padding: 0;
-    background-color: #EEF0F4
+    background-color: #EEF0F4;
+    font-family: "Rubik", sans-serif;
+    color: #432000;
+    user-select: none;
 }
 
 input{
@@ -27,6 +30,11 @@ button{
     font-family: 'Rubik', sans-serif;
 }
 
+button:hover{
+    background-color: #432000;
+    cursor:pointer
+}
+
 .container{
     display:flex;
     flex-direction: column;
@@ -45,6 +53,8 @@ ul{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 0 auto;
+    padding-top: 10px;
 }
 
 ul li{
@@ -56,5 +66,9 @@ ul li{
     border-radius: 8px;
     flex-grow: 1;
     text-align: center;
+}
 
+ul li:hover{
+    background-color: #FFECC7;
+    cursor:pointer;
 }

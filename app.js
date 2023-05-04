@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import {getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import {getDatabase, ref, push, onValue, remove} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings ={
     databaseURL: "https://playground-d5878-default-rtdb.firebaseio.com/"
@@ -20,10 +20,19 @@ addButton.addEventListener("click", ()=>{
 })
 
 onValue(shoppingListDB, function(snapshot){
-    let itemsArray = Object.values(snapshot.val())
-    clearShoppingList()
-    for(let item of itemsArray){
-        addItem(item)
+
+    if(snapshot.exists()){
+
+        let itemsArray = Object.entries(snapshot.val())
+
+        clearShoppingList()
+
+        for(let [key,item] of itemsArray){
+
+            addItem(key,item)
+        }
+    } else{
+        shoppingList.innerHTML = "List Completed!"
     }
 })
 
@@ -38,7 +47,13 @@ function clearShoppingList(){
 }
 
 //add new item to list
-function addItem(item){
+function addItem(key,item){
     let newItem = shoppingList.appendChild(document.createElement("li"))
     newItem.textContent = item
+
+    //delete item if clicked
+    newItem.addEventListener("click", function(){
+        let itemLocation = ref(database, `shoppingList/${key}`)
+        remove(itemLocation)
+    })
 }
