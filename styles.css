@@ -38,3 +38,23 @@ img{
     width: 150px;
     margin: 0 auto;
 }
+
+ul{
+    flex-wrap: wrap;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ul li{
+    font-size: 20px;
+    background-color: #FFFDF8;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    list-style-type: none;
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    text-align: center;
+
+}
